@@ -117,7 +117,7 @@ if __name__ == "__main__":
 
      # -> Media without readable Exif Files / File extensions from the media files in front as key and the folder to be crated as value
 
-    folder = raw_input("Ordner eingeben: ")
+    folder = raw_input("Media folder: ")
     sort(config_dict.endungen_exif,config_dict.endungen_created, folder)
 
     # BEWARE:
