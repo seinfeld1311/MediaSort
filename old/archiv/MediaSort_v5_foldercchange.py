@@ -62,20 +62,20 @@ def sort(endungen_exif, endungen_created, in_folder, folder_create, endungen_pro
     with open("log.txt", "w") as logfile:
         for i in filter(os.path.isfile, os.listdir(direc)):  # Searches for media files in folder
             try:
-                imagepath = os.path.join(in_folder, i)  # create the path to the picture/media file
+                imagepath = os.path.join("./", i)  # create the path to the picture/media file
                 endung = i.split(".")[1]  # get rid of the file extension
                 if endung.lower() in endungen_exif:  # The if in part is looking for correspodent file extensions in
                     # folder and dictionary.
                     shtime = str(readexifdate(imagepath, folder_create))  # reading the EXIF date
                     print "shtime ", shtime
-                    pfad = os.path.join("/", endungen_exif[endung.lower()], shtime)
+                    pfad = os.path.join("./", endungen_exif[endung.lower()], shtime)
                     print "pfad ", pfad
                     if not os.path.exists(pfad):
                         os.makedirs(pfad)
                     shutil.move(imagepath, pfad)
                 elif endung.lower() in endungen_created:
                     shtime = mp4_date(i, folder_create)  # mp4 Created Date
-                    pfad = os.path.join("/", endungen_created[endung.lower()], shtime)
+                    pfad = os.path.join("./", endungen_created[endung.lower()], shtime)
                     print "pfad2 ", pfad
                     if not os.path.exists(pfad):
                         os.makedirs(pfad)
@@ -97,19 +97,11 @@ def sort(endungen_exif, endungen_created, in_folder, folder_create, endungen_pro
                 logfile.writelines("\nKeyError: {0} - "
                                    "{1} bei Datei: {2}\n".format(sys.exc_info()[0], sys.exc_info()[1], i))
                 shtime = mp4_date(i, folder_create)  # mp4 Created Date
-                pfad = os.path.join(in_folder, endungen_problem[endung.lower()], shtime)
-                # pfad = os.path.join("./", endungen_problem[endung.lower()], shtime)
+                pfad = os.path.join("./", endungen_problem[endung.lower()], shtime)
                 print "pfad2 ", pfad
-                print "pfad1 ", imagepath
                 if not os.path.exists(pfad):
                     os.makedirs(pfad)
-                try:
-                    shutil.move(imagepath, pfad)
-                except shutil.Error:
-                    print "\nShutil.Error: {0} - {1} bei Datei: {2}\n".format(sys.exc_info()[0], sys.exc_info()[1], i)
-                    logfile.writelines("\nShutil.Error: {0} - "
-                                       "{1} bei Datei: {2}\n".format(sys.exc_info()[0], sys.exc_info()[1], i))
-                    pass
+                shutil.move(imagepath, pfad)
     del_log("log.txt")
     # This part let the user decide if the unnecessary / second copies of the files can be erased or not
     if len(delliste) > 0:
@@ -125,8 +117,8 @@ def sort(endungen_exif, endungen_created, in_folder, folder_create, endungen_pro
 def readexifdate(imagepath, f_c):  # Function for getting the Exifdate from the pictures an create the folders
     f = open(imagepath, 'rb')
     tags = exifread.process_file(f)
-    exif_time = str(tags["EXIF DateTimeDigitized"]).split(" ")[
-        0]  # TODO To get the single parts of the Date, split it and name the parts an yy/mm/dd
+    exif_time = str(tags["EXIF DateTimeDigitized"]).split(" ")[0]
+    # TODO To get the single parts of the Date, split it and name the parts an yy/mm/dd
     print "exif_time ", exif_time
     ymd = ("y", "m", "d")
     print ymd
@@ -210,10 +202,10 @@ if __name__ == "__main__":
     #                          "1 - Folder -> yyyy-mm-dd\n"
     #                          "2 - Folder -> yyyy-mm : ")
     foldertocreate = raw_input("Choose y=year, m=month, d=day with a seperator (_ : or more) f.i. y_m_d will create "
-                               "(.../2018_12_30/...) \nbut / as a seperator is used to create a folder in a main folder"
-                               "f.i."
-                               "\na folder in the year_month folder ->  y_m/d will create ( .../2018_12/27/... )"
-                               "\nleave input empty for creating standard folder y-m-d :")
+                              "(.../2018_12_30/...) \nbut / as a seperator is used to create a folder in a main folder "
+                              "f.i."
+                              "\na folder in the year_month folder ->  y_m/d will create ( .../2018_12/27/... )"
+                              "\nleave input empty for creating standard folder y-m-d :")
     foldertocreate = foldertocreate if len(foldertocreate) > 0 else "y-m-d"
     print foldertocreate
     sort(config_dict.endungen_exif, config_dict.endungen_created, photo_folder, foldertocreate,
