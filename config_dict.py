@@ -26,3 +26,7 @@ endungen_created = {
     "mp4": "mov",
     "mov": "mov",
 }  # -> Media without readable Exif Files / File extensions from the media files in front as key and the folder to be crated as value
+
+endungen_problem = {
+    "gif": "gif",
+}
