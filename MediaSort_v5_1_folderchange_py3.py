@@ -42,6 +42,9 @@ Changelog v4 2019/03/07:
     necessary 
 Changelog v4 2018/12/14:
     It is now possible to limit the folder depth from Year-Month-day to Year-Month
+changelog v5 2021/09/30:
+    This is a try to get the MediaSort programm in Python 3 Format
+    TODO: it is not FINISHED !!!!
 
 """
 

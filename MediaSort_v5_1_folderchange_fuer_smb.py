@@ -19,7 +19,7 @@ mp4 (base fold)
     - 2018-03-18 (sub folder)
     
 
-To use the script for other media files you must expand one of the dicts in the config_dict.py with the file extensions 
+To use the script for other media files you must expand one of the dicts in the config_dict_smb.py with the file extensions 
 you need.
 
 
@@ -50,7 +50,7 @@ changelog _fuer_smb 2021/08/11:
     Eventuell gibt es eine Option bei mkdir wo der "/" vorn bleiben kann oder ein andere copy tool auf Systemebene
 """
 
-import config_dict
+import config_dict_smb
 import exifread
 import os
 import shutil
@@ -109,6 +109,7 @@ def sort(endungen_exif, endungen_created, in_folder, folder_create, endungen_pro
                 logfile.writelines("\nKeyError: {0} - "
                                    "{1} bei Datei: {2}\n".format(sys.exc_info()[0], sys.exc_info()[1], i))
                 shtime = mp4_date(i, folder_create)  # mp4 Created Date
+                print "shtime mp4 ",shtime
                 pfad = os.path.join(in_folder, endungen_problem[endung.lower()], shtime)
                 pfad2 = os.path.join(in_folder, endungen_problem[endung.lower()], shtime) #Wenn es hier Probleme gibt, kann es daran liegen, dass Infolder mit "/" beginnt, für ein sudo mkdir muss der Slash vorn weg !!
                 # pfad = os.path.join("./", endungen_problem[endung.lower()], shtime)
@@ -230,8 +231,8 @@ if __name__ == "__main__":
                                "\nleave input empty for creating standard folder y-m-d :")
     foldertocreate = foldertocreate if len(foldertocreate) > 0 else "y-m-d"
     print foldertocreate
-    sort(config_dict.endungen_exif, config_dict.endungen_created, photo_folder, foldertocreate,
-         config_dict.endungen_problem)
+    sort(config_dict_smb.endungen_exif, config_dict_smb.endungen_created, photo_folder, foldertocreate,
+         config_dict_smb.endungen_problem)
 
     # BEWARE:
     # https://pypi.python.org/pypi/ExifRead
