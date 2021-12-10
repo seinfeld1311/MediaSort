@@ -92,7 +92,8 @@ def sort(endungen_exif, endungen_created, in_folder, folder_create, endungen_pro
             except RuntimeError:
                 print sys.exc_info()
                 logfile.writelines("\nRuntime Error: {0} - "
-                                   "{1} bei Datei: {2}\n".format(sys.exc_info()[0], sys.exc_info()[1], i))
+                                   "{1} bei Datei: {2}\nVermutliche liegt EXIF in einem anderen Format oder gar nicht "
+                                   "vor. Das Erstelldatum wurde ausgelesen".format(sys.exc_info()[0], sys.exc_info()[1], i))
                 print "Fehler: {} - {} \nbei Datei: {}".format(sys.exc_info()[0], sys.exc_info()[1], i)
             except KeyError:
                 logfile.writelines("\nKeyError: {0} - "
