@@ -32,5 +32,6 @@ endungen_problem = {
     "gif": "gif",
     "mp4": "mov", # this (mp4 and jpg) don't belong here, but there seems to be problems with mp4 and jpg in
     "gif": "gif",
-    "jpg": "jpeg" # connection with camera and mobilphoen -> not with every but with a couple. I dont know why but this helbs
+    "jpg": "jpeg",
+    "jpeg": "jpeg" # connection with camera and mobilphoen -> not with every but with a couple. I dont know why but this helbs
 }

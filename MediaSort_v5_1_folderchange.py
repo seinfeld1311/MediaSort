@@ -9,6 +9,7 @@ __status__ = "Production"
 __last_edited__ = "2019-03-10"
 
 """
+tt
 The Script can be used to sort media Files (jpg/raw/mp4...) in a base folder
 named after the file extension (picture/movie extension " jpg " )
 with sub folders named after the exif Date/Created date of the corresponding media files.
@@ -68,14 +69,14 @@ def sort(endungen_exif, endungen_created, in_folder, folder_create, endungen_pro
                     # folder and dictionary.
                     shtime = str(readexifdate(imagepath, folder_create))  # reading the EXIF date
                     print "shtime ", shtime
-                    pfad = os.path.join("/", endungen_exif[endung.lower()], shtime)
+                    pfad = os.path.join("./", endungen_exif[endung.lower()], shtime)
                     print "pfad ", pfad
                     if not os.path.exists(pfad):
                         os.makedirs(pfad)
                     shutil.move(imagepath, pfad)
                 elif endung.lower() in endungen_created:
                     shtime = mp4_date(i, folder_create)  # mp4 Created Date
-                    pfad = os.path.join("/", endungen_created[endung.lower()], shtime)
+                    pfad = os.path.join("./", endungen_created[endung.lower()], shtime)
                     print "pfad2 ", pfad
                     if not os.path.exists(pfad):
                         os.makedirs(pfad)

@@ -102,6 +102,7 @@ def sort(endungen_exif, endungen_created, in_folder, folder_create, endungen_pro
                 if not os.path.exists(pfad):
                     os.makedirs(pfad)
                 shutil.move(imagepath, pfad)
+
     del_log("log.txt")
     # This part let the user decide if the unnecessary / second copies of the files can be erased or not
     if len(delliste) > 0:
