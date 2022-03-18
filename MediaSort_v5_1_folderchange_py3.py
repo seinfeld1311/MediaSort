@@ -9,6 +9,7 @@ __status__ = "Production"
 __last_edited__ = "2019-03-10"
 
 """
+NN
 The Script can be used to sort media Files (jpg/raw/mp4...) in a base folder
 named after the file extension (picture/movie extension " jpg " )
 with sub folders named after the exif Date/Created date of the corresponding media files.
