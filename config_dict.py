@@ -21,6 +21,7 @@ endungen_exif = {
     "jpeg": "jpeg",
     "jpg": "jpeg",
     "rw2": "raw",
+    "gif":"gif",
 }  # -> Media with readable exif files (raw/ Pictures) File extensions from the media files in front as key and the folder to be crated as value
 
 endungen_created = {
